@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2023 by AeternumIter (http://jsbin.com/dinakis/2/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+    body {
+      background-color:rgb(150,5,5);
+    }
+    h1 {
+      color:white;
+    }
+    label {
+      color:white;
+    }
+  </style>
+</head>
+<body>
+<h1>RemindME</h1>
+<textarea id="reminderOutput" readonly>none yet...</textarea>
+<br>
+  <button id="leftButton"><< left </button>
+  <label id="reminderNumberOutput">1</label>
+  <button id="rightButton">right >> </button>
+  <br>
+  <input id="reminderInput" placeholder="(eg. walk dog)"></input>
+  <button id="addButton">add</button>
+  <br>
+  <input id="removeInput" placeholder=""></input>
+  <button id="removeButton">remove</button>
+  <script id="jsbin-javascript">
+//define core variables
+var index = 0;
+var reminders = [];
+
+//defining screen update function
+function updateScreen(){
+  reminderNumberOutput.innerHTML = index+1;
+  reminderOutput.value = reminders[index];
+  console.log(reminders[index]);
+}
+
+//defining function for when there are no reminders
+function emptyList() {
+  reminderNumberOutput.innerHTML = 1;
+  reminderOutput.value = "none yet...";
+}
+
+//stuff to do when right button is clicked
+rightButton.onclick = function(){
+  if (reminders.length===0) {
+    emptyList();
+  } else if (index<reminders.length-1) {
+    index++;
+    updateScreen();
+  } else {
+    index=0;
+    updateScreen();
+  }
+}
+
+//stuff to do when left button is clicked
+leftButton.onclick = function(){
+  if (reminders.length===0) {
+    emptyList();
+  } else if (index>0) {
+    index--;
+    updateScreen();
+  } else {
+    index=reminders.length;
+    updateScreen();
+  }
+}
+
+//adding a reminder to the list button
+addButton.onclick = function(){
+  reminders.push(document.getElementById("reminderInput").value);
+  console.log(reminders);
+  updateScreen();
+}
+
+//removing a reminder from the list button
+removeButton.onclick = function(){
+  var remove = document.getElementById("removeInput").value;
+  var remIndex = reminders.indexOf(remove);
+  if (remIndex>-1) {
+    reminders.splice(remIndex,1)
+  }
+  updateScreen();
+}
+    
+
+</script>
+</body>
+</html>
