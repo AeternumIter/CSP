@@ -1,6 +1,7 @@
 const list=[];
-for (let i=0;i<1000;i++) {
-  list.push(Math.floor(Math.random()*1000))
+let x=100;
+for (let i=0;i<x;i++) {
+  list.push(Math.floor(Math.random()*x))
 }
 function defaultSort(list) {
   return list.sort(function(a,b){return a-b});
@@ -67,23 +68,26 @@ function merge(left, right) {
 }
 
 function _slowSort(a,i,j) {
-  if (i>=j)
+  if (i>=j){
     return;
-  let m = parseInt((i+j)/2);
+  }
+  let m = parseInt((i+j)/2, 10);
   _slowSort(a,i,m);
   _slowSort(a,m+1,j);
   if (a[j]<a[m]) {
-    let t=a[j];
+    let temp=a[j];
     a[j]=a[m];
-    a[m]=t;
+    a[m]=temp;
   }
   _slowSort(a,i,j-1);
 }
 function slowSort(arr) {
-  slowSort(arr,0,arr.length-1);
+  const array=arr;
+  _slowSort(array,0,(array.length-1));
+  return array;
 }
 //console.log(quickSort(list));
 //console.log(defaultSort(list));
 //console.log(insertionSort(list));
 //console.log(mergeSort(list));
-//console.log(slowSort(list));
+console.log(slowSort(list));
