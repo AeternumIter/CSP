@@ -1,19 +1,25 @@
+const list=[];
+for (let i=0;i<1000;i++) {
+  list.push(Math.floor(Math.random()*1000))
+}
 function defaultSort(list) {
   return list.sort(function(a,b){return a-b});
 }
+
 function quickSort(arr) {
-    if (arr.length <= 1) return arr;
-  
-    const pivot = arr[0];
-    const left = [];
-    const right = [];
-  
-    for (let i = 1; i < arr.length; i++) {
-      if (arr[i] < pivot) left.push(arr[i]);
-      else right.push(arr[i]);
-    }
-    return [...quickSort(left), pivot, ...quickSort(right)];
+  if (arr.length <= 1) return arr;
+
+  const pivot = arr[0];
+  const left = [];
+  const right = [];
+
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] < pivot) left.push(arr[i]);
+    else right.push(arr[i]);
   }
+  return [...quickSort(left), pivot, ...quickSort(right)];
+}
+
 function insertionSort(arr) {
     for (let i = 1; i < arr.length; i++) {
       let current = arr[i];
@@ -30,54 +36,54 @@ function insertionSort(arr) {
   
     return arr;
 }
+
 function mergeSort(arr) {
-    if (arr.length <= 1) return arr;
-  
-    const middle = Math.floor(arr.length / 2);
-  
-    const left = arr.slice(0, middle);
-    const right = arr.slice(middle);
-  
-    return merge(mergeSort(left), mergeSort(right));
-  }
-  
-  
-  function merge(left, right) {
-    let result = [];
-    let leftIndex = 0;
-    let rightIndex = 0;
-  
-    while (leftIndex < left.length && rightIndex < right.length) {
-      if (left[leftIndex] < right[rightIndex]) {
-        result.push(left[leftIndex]);
-        leftIndex++;
-      } else {
-        result.push(right[rightIndex]);
-        rightIndex++;
-      }
-    }
-  
-    return result.concat(left.slice(leftIndex), right.slice(rightIndex));
-  }
-function shuffle(array) {
-  let currentIndex = array.length,  randomIndex;
+  if (arr.length <= 1) return arr;
 
-  // While there remain elements to shuffle.
-  while (currentIndex > 0) {
+  const middle = Math.floor(arr.length / 2);
 
-    // Pick a remaining element.
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
+  const left = arr.slice(0, middle);
+  const right = arr.slice(middle);
 
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex], array[currentIndex]];
-  }
-
-  return array;
+  return merge(mergeSort(left), mergeSort(right));
 }
 
+function merge(left, right) {
+  let result = [];
+  let leftIndex = 0;
+  let rightIndex = 0;
+
+  while (leftIndex < left.length && rightIndex < right.length) {
+    if (left[leftIndex] < right[rightIndex]) {
+      result.push(left[leftIndex]);
+      leftIndex++;
+    } else {
+      result.push(right[rightIndex]);
+      rightIndex++;
+    }
+  }
+
+  return result.concat(left.slice(leftIndex), right.slice(rightIndex));
+}
+
+function _slowSort(a,i,j) {
+  if (i>=j)
+    return;
+  let m = parseInt((i+j)/2);
+  _slowSort(a,i,m);
+  _slowSort(a,m+1,j);
+  if (a[j]<a[m]) {
+    let t=a[j];
+    a[j]=a[m];
+    a[m]=t;
+  }
+  _slowSort(a,i,j-1);
+}
+function slowSort(arr) {
+  slowSort(arr,0,arr.length-1);
+}
 //console.log(quickSort(list));
 //console.log(defaultSort(list));
 //console.log(insertionSort(list));
 //console.log(mergeSort(list));
+//console.log(slowSort(list));
