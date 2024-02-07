@@ -1,12 +1,14 @@
-//Function to sort a list of numbers using the built-in javascript .sort() array method
-//Takes one paramater: arr - the array to be sorted
-//Returns the sorted list
+//sorts.defaultSort(arr)
+//defaultSort sorts a list of numbers using the built-in .sort() array method
+//arr {list} -- the list of numbers to be sorted
+//return {list} -- the sorted list of numbers
 function defaultSort(arr) {
   return arr.sort(function(a,b){return a-b});
 }
-//Function to sort a list of numbers using the quicksort technique
-//Takes one parameter: arr - the array to be sorted
-//Returns the sorted list
+//sorts.quickSort(arr)
+//quickSort sorts a list of numbers using the quicksort technique
+//arr {list} -- the list of numbers to be sorted
+//return {list} the sorted list of numbers
 function quickSort(arr) {
   if (arr.length <= 1) return arr;
 
