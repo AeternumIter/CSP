@@ -8,7 +8,7 @@ function defaultSort(arr) {
 //sorts.quickSort(arr)
 //quickSort sorts a list of numbers using the quicksort technique
 //arr {list} -- the list of numbers to be sorted
-//return {list} the sorted list of numbers
+//return {list} -- the sorted list of numbers
 function quickSort(arr) {
   if (arr.length <= 1) return arr;
 
@@ -22,9 +22,10 @@ function quickSort(arr) {
   }
   return [...quickSort(left), pivot, ...quickSort(right)];
 }
-//Function to sort a list of numbers using the insertion sort technique
-//Takes one parameter: arr - the array to be sorted
-//Returns the sorted list
+//sorts.insertionSort(arr)
+//insertionSort sorts a list of numbers using the insertion sort technique
+//arr {list} -- the list of numbers to be sorted
+//return {list} -- the sorted list of numbers
 function insertionSort(arr) {
     for (let i = 1; i < arr.length; i++) {
       let current = arr[i];
@@ -41,9 +42,10 @@ function insertionSort(arr) {
   
     return arr;
 }
-//Function to sort a list of numbers using the merge sort technique
-//Takes one parameter: arr - the array to be sorted
-//Returns the sorted list
+//sorts.mergeSort(arr)
+//mergeSort sorts a list of numbers using the merge sort technique
+//arr {list} -- the list of numbers to be sorted
+//return {list} -- the sorted list of numbers
 function mergeSort(arr) {
   if (arr.length <= 1) return arr;
 
@@ -54,9 +56,11 @@ function mergeSort(arr) {
 
   return merge(mergeSort(left), mergeSort(right));
 }
-//Function to merge two lists into one sorted list
-//Takes two parameters: left - the left array, right - the right array
-//Returns the sorted list
+//sorts.merge(left, right)
+//merge merges two lists into one sorted list
+//left {list} -- the left array 
+//right {list} -- the right array
+//return {list} -- the combined list
 function merge(left, right) {
   let result = [];
   let leftIndex = 0;
@@ -74,9 +78,11 @@ function merge(left, right) {
 
   return result.concat(left.slice(leftIndex), right.slice(rightIndex));
 }
-//Function to sort a list of numbers very slowly using the slowsort method
-//Takes 3 parameters: a - the array, i - the index to start at, and j - the index to stop at
-//Returns nothing - overwrites the original array
+//sorts._slowSort(a,i,j)
+//_slowSort sorts a list of numbers very slowly using the slowsort method
+//a {list} -- the list of numbers 
+//i {number} -- the index to start at 
+//j {number} -- the index to stop at
 function _slowSort(a,i,j) {
   if (i>=j){
     return;
@@ -91,9 +97,10 @@ function _slowSort(a,i,j) {
   }
   _slowSort(a,i,j-1);
 }
-//Function to simplify input to the _slowSort function
-//Takes 1 parameter: arr - the array to input to the _slowSort function
-//Returns the overwritten array output from _slowSort
+//sorts.slowSort(arr)
+//slowSort simplifies input to the _slowSort function
+//arr {list} -- the array to input to the _slowSort function
+//return {list} -- the output of the _slowSort function
 function slowSort(arr) {
   const array=arr;
   _slowSort(array,0,(array.length-1));
