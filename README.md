@@ -1,2 +1,4 @@
 # CSP
 Epic compilation of stuff I did in AP CSP class
+# Me ranting about code.org
+So, our class is using code.org to learn javascript. The one problem is, code.org's javascript is so far out of date/just really weird that I'm kind of forced to use github to write all of my code. It's soooo bad! It doesn't allow me to use let or const which were introduced to the standard javascript language almost 10 years ago! I hate it I hate it I hate it. The funniest part about this really annoying problem is that the syntax highlighter that code.org uses is more up to date that the actual coding is. For example, I can write let and const, which as I have said don't work at all, IS STILL HIGHLIGHTED IN PURPLE LIKE VAR IS. Like, who thought 'oh let's just teach kids a really bad version of a normal coding language!' It's pure insanity. Anyway, I just hate code.org.
