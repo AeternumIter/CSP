@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2024 by AeternumIter (http://jsbin.com/dezeciz/8/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Caesar</title>
+<style id="jsbin-css">
+body {
+      background-color:rgb(150,0,255)
+    }
+    label {
+      color:rgb(255,255,25);
+      font-size:20px;
+    }
+    h1 {
+      color:rgb(255,255,25);
+      font-size:40px;
+    }
+    p {
+      color:rgb(255,255,25);
+      font-size:25px
+    }
+</style>
+</head>
+<body>
+  <h1>Caesar Cipher</h1>
+  <input onclick="dMode()"type="radio" checked id="decrypt" name="crypt" value="Decrypt">
+  <label for="decrypt">Decrypt</label><br>
+  <input onclick="eMode()"type="radio" id="encrypt" name="crypt" value="Encrypt">
+  <label for="encrypt">Encrypt</label><br><br>
+  <input oninput="update()"id="input" placeholder="Message">
+  <input onchange="update()"id="shift" type="range" min="0" max="25" value="0">
+  <label id="number" for="shift">0</label><br>
+  <p id="output">Output:<p>
+<script id="jsbin-javascript">
+let d=true;
+const alpha=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+const upper=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+function decrypt(message,shift) {
+  let answer="";
+  console.log("decrypting "+message+" using shift "+shift);
+  for (let i=0;i<message.length;i++) {
+    if (upper.includes(message[i])) {
+      let newIndex=upper.indexOf(message[i])-shift;
+      if (newIndex>-1) {
+        answer+=upper[newIndex];
+      } else {
+        answer+=upper[newIndex+26];
+      }
+    } else if (alpha.includes(message[i])) {
+      let newIndex=alpha.indexOf(message[i])-shift;
+      if (newIndex>=0) {
+        answer+=alpha[newIndex];
+      } else {
+        answer+=alpha[newIndex+26];
+      }
+    } else {
+      answer+=message[i];
+    }
+  }
+  return answer;
+}
+function encrypt(message,shift) {
+  console.log("encrypting "+message+" using shift "+shift);
+  let answer="";
+  for (let i=0;i<message.length;i++) {
+    if (upper.includes(message[i])) {
+      let newIndex=upper.indexOf(message[i])+shift;
+      if (newIndex<26) {
+        answer+=upper[newIndex];
+      } else {
+        answer+=upper[newIndex-26];
+      }
+    } else if (alpha.includes(message[i])) {
+      let newIndex=alpha.indexOf(message[i])+shift;
+      if (newIndex<26) {
+        answer+=alpha[newIndex];
+      } else {
+        answer+=alpha[newIndex-26];
+      }
+    } else {
+      answer+=message[i];
+    }
+  }
+  return answer;
+}
+function dMode() {
+  d=true;
+}
+function eMode() {
+  d=false;
+}
+shift.onchange=function() {
+  document.getElementById("number").innerHTML=document.getElementById("shift").value;
+  if (d) {
+    document.getElementById("output").innerHTML="Output: "+decrypt((document.getElementById("input").value),(document.getElementById("shift").value));
+  } else {
+    document.getElementById("output").innerHTML="Output: "+encrypt((document.getElementById("input").value), Number(document.getElementById("shift").value));
+  }
+}
+input.oninput=function() {
+  if (d) {
+    document.getElementById("output").innerHTML="Output: "+decrypt((document.getElementById("input").value),(document.getElementById("shift").value));
+  } else {
+    document.getElementById("output").innerHTML="Output: "+encrypt((document.getElementById("input").value), Number(document.getElementById("shift").value));
+  }
+}
+</script>
+</body>
+</html>
