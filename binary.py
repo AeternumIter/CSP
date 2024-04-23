@@ -4,7 +4,7 @@ i=1
 for i in range(1,1001):
     numbers.append(i)
 print("Choose an integer between 1-1000")
-while(True):
+while True:
     try:
         print("Is it higher(h), lower(l), or equal(e) to "+str(numbers[math.floor(len(numbers)/2)]))
     except:
